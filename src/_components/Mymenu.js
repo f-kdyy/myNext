@@ -14,6 +14,22 @@ export default function Mymenu() {
                 <FontAwesomeIcon icon={faBug} className='fa' />
                 <span>错误处理</span>
             </li>
+            <li className="list-group-item active">
+                <FontAwesomeIcon icon={faShieldHalved} className='fa'/>
+                <span>日志查询</span>
+            </li>
+            <li className="list-group-item">
+                <FontAwesomeIcon icon={faBug} className='fa' />
+                <span>错误处理</span>
+            </li>
+            <li className="list-group-item active">
+                <FontAwesomeIcon icon={faShieldHalved} className='fa'/>
+                <span>日志查询</span>
+            </li>
+            <li className="list-group-item">
+                <FontAwesomeIcon icon={faBug} className='fa' />
+                <span>错误处理</span>
+            </li>
         </ul>
     </>
   )

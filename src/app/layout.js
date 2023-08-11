@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './page';
 import MyContentTopbar from '@/_components/MyContentTopbar';
 import MyContentCommands from '@/_components/MyContentCommands';
+import MyContentTable from '@/_components/MyContentTable';
 
 
 export default function RootLayout({ children }) {
@@ -18,7 +19,10 @@ export default function RootLayout({ children }) {
             </div>
             <div className={`content`}>
               <MyContentTopbar />
-              <MyContentCommands />
+              <div className='content-center'>
+                <MyContentCommands />
+                <MyContentTable />
+              </div>
             </div>
         </div>
       </body>
