@@ -6,7 +6,7 @@ export default function MyContentTopbar() {
   return (
     <div className='content-top'>
         <FontAwesomeIcon icon={faBars} className='fa' />
-        <h1>hello</h1>
+        <h1>运维平台</h1>
     </div>
   )
 }

@@ -1,17 +1,13 @@
-import Myheader from '@/_components/Myheader'
-import Mymenu from '@/_components/Mymenu'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+'use client';
+import MyContentCommands from '@/_components/zkop/MyContentCommands';
+import MyContentTable from '@/_components/zkop/MyContentTable';
 
 export default function Home() {
   return (
     <>
-      <div className='header'>
-        <Myheader />
-      </div>
-      <div className='menu'>
-        <Mymenu />
+      <div className='content-center'>
+        <MyContentCommands />
+        <MyContentTable />
       </div>
     </>
   )

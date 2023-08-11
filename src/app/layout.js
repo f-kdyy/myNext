@@ -1,12 +1,9 @@
 "use client"
 import './globals.css'
-import {Container, Row, Col} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './page';
-import MyContentTopbar from '@/_components/MyContentTopbar';
-import MyContentCommands from '@/_components/MyContentCommands';
-import MyContentTable from '@/_components/MyContentTable';
-
+import Myheader from '@/_components/main/MyHeader'
+import Mymenu from '@/_components/main/MyMenu'
+import MyContentTopbar from '@/_components/zkop/MyContentTopbar';
 
 export default function RootLayout({ children }) {
   return (
@@ -14,15 +11,17 @@ export default function RootLayout({ children }) {
       <body>
         <div className={`app`}>
             <div className={`sidebar`}>
-                {/* <Home /> */}
-                {children}
+              <div className='header'>
+                <Myheader />
+              </div>
+              <div className='menu'>
+                <Mymenu />
+              </div>
+                
             </div>
             <div className={`content`}>
               <MyContentTopbar />
-              <div className='content-center'>
-                <MyContentCommands />
-                <MyContentTable />
-              </div>
+              {children}
             </div>
         </div>
       </body>

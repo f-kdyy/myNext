@@ -6,10 +6,60 @@
     --headerML: 20px;
 }
 
+.modal-content {
+    color: white!important;
+    background-color: #1b2231!important;
+    letter-spacing: 5px;
+    div {
+        border: 0;
+    }
+
+    .btn {
+        width: 150px;
+        height: 45px;
+        border: 0;
+        border-radius: 3px;
+        font-weight: 550;
+        font-size: 18px;
+        letter-spacing: 8px;
+    }
+    .btn-primary {
+        color: #141d2b;
+        background-color: rgb(159, 239, 0, 1);
+
+        &:hover {
+            background-color: rgb(159, 239, 0, 0.9);
+            color: #141d2b;
+        }
+    }
+    .btn-secondary {
+        color: #a4afc9;
+        background-color: #1b2231;
+
+        &:hover {
+            background-color: rgb(165,174,199,0.5);
+            color: #1b2231;
+        }
+    }
+
+    .modal-body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+
+        .fa {
+            width: 30px;
+            height: 30px;
+            // margin-left: 10px;
+        }
+    }
+}
+
 .app {
     background-color: var(--primary);
     display: flex;
-    color: white;
+    color: #a4b1cd;
 
     .sidebar {
         min-height: 100vh;
@@ -31,12 +81,12 @@
 
 
             .header-image {
-                background-image: url(../../public/htb.svg);
+                background-image: url(../../public/ds.png);
                 background-repeat: no-repeat;
-                // background-position: center center;
-
-                width: 40px;
-                height: 40px;
+                background-position: center center;
+                background-size: contain;
+                width: 90%;
+                height: 90%;
             }
 
             .header-title {
@@ -46,8 +96,13 @@
 
         .menu {
             margin-top: 30px;
+
+            a {
+                text-decoration: none;
+                color: #a4b1cd;
+            }
             .list-group {
-                padding-left: 10px;
+                padding-left: 20px;
                 .list-group-item {
                     background-color: var(--third);
                     color: #a4b1cd;
@@ -88,7 +143,7 @@
             width: 100%;
             position: sticky;
             top: 0;
-            z-index: 999999;
+            z-index: 999;
             background-color: var(--third);
 
             border-bottom: 1px solid rgba(32,40,55,.5);
@@ -126,37 +181,111 @@
                         font-size: 20px;
                         font-weight: 600;
                     }
+
+                    .card-body {
+                        .card-title {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 10px;
+
+                            span {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 10px;
+                                width: 100px;
+                                height: 30px;
+                                border-radius: 10px;
+                                color: rgb(9, 69, 199,1);
+                                background-color: rgba(9, 69, 199, 0.25);
+
+                                &::before {
+                                    content: "";
+                                    display: block;
+                                    width: 10px;
+                                    height: 10px;
+                                    border-radius: 100%;
+                                    background-color: rgba(9, 69, 199, 1);
+                                }
+                                
+                                &.warning {
+                                    &::before {
+                                        background-color: rgba(255, 167, 52, 1);
+                                    }
+                                    color: rgba(255, 167, 52, 1);
+                                    background-color: rgba(255, 167, 52, 0.5);
+                                }
+
+                                &.success {
+                                    &::before {
+                                        background-color: rgb(159, 239, 0, 1);
+                                    }
+                                    color: rgba(159, 239, 0, 1);
+                                    background-color: rgba(159, 239, 0, 0.5);
+                                }
+
+                                &.danger {
+                                    &::before {
+                                        background-color: rgba(255, 57, 67, 1);
+                                    }
+                                    color: rgba(255, 57, 67, 1);
+                                    background-color: rgba(68, 30, 43, 0.5);
+                                }
+                            }
+                        }
+                    }
     
                     .card-footer {
                         display: flex;
+                        flex-direction: column;
                         justify-content: center;
                         align-items: center;
                         border: 0;
 
-                        &:hover {
-                            .card-span-btn {
-                                display: block;
+                        .foot-date, .foot-date-sp, .foot-funcs {
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+                            width: 80%;
+
+                            .foot-funcs-start, .foot-funcs-stop, .foot-funcs-sync {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 15px;
+                                padding: 0 8px 0 8px;
                             }
-                            .card-span {
+
+                            span {
+                                display: block;
+                                width: 100%;
+    
+                                &:not(:last-child) {
+                                    border-right: 2px solid rgba(173, 184, 206, 0.5);
+                                }
+                            }
+                        }
+
+                        .foot-funcs {
+                            display: none;
+
+                            div {
+                                &:hover {
+                                    color: white;
+                                    cursor: pointer;
+                                    background-color: #3e424b;
+                                    border-radius: 5px;
+                                }
+                            }
+                        }
+
+                        &:hover {
+                            .foot-date {
                                 display: none;
                             }
-                        }
-    
-                        .card-span {
-                            display: block;
-                            width: 100%;
-
-                            &:first-child {
-                                border-right: 2px solid rgba(173, 184, 206, 0.5);
-                            }
-                        }
-
-                        .card-span-btn {
-                            display: none;
-                            width: 100%;
-
-                            &:first-child {
-                                border-right: 2px solid rgba(173, 184, 206, 0.5);
+                            .foot-funcs {
+                                display: flex;
                             }
                         }
                     }
