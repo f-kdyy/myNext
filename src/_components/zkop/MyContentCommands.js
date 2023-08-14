@@ -68,9 +68,8 @@ export default function MyContentCommands() {
     if (req === null) {
       return;
     } else {
-      const {module, cmd} = req;
-
-      fetch(`/api/${module}?action=exec&param${cmd}`, {
+      const {m, c} = req;
+      fetch(`/api/${m}?action=exec&param${c}`, {
         method: 'GET',
       })
       .then(resp => {
@@ -171,7 +170,7 @@ export default function MyContentCommands() {
                     <FontAwesomeIcon icon={faPlay} className='fa' style={{color: "#7ef447",}}/>
                     <span className='card-span-btn'>开始批处理</span>
                   </div>
-                  <div className='foot-funcs-stop'>
+                  <div className='foot-funcs-stop' onClick={ () => handleShow('executeTask', 'stop')}>
                     <FontAwesomeIcon icon={faStop} className='fa' style={{color: "#ff3943",}}/>
                     <span className='card-span-btn'>停止批处理</span>
                   </div>
@@ -189,15 +188,15 @@ export default function MyContentCommands() {
                   <span className='card-span'>下次日期：{crm.lastDate}</span>
                 </div>
                 <div className='foot-funcs'>
-                  <div className='foot-funcs-start'>
+                  <div className='foot-funcs-start' onClick={() => handleShow('executeSync', 'run')}>
                     <FontAwesomeIcon icon={faPlay} className='fa' style={{color: "#7ef447",}}/>
                     <span className='card-span-btn'>开始同步</span>
                   </div>
-                  <div className='foot-funcs-stop'>
+                  <div className='foot-funcs-stop' onClick={() => handleShow('executeSync', 'kill')}>
                     <FontAwesomeIcon icon={faStop} className='fa' style={{color: "#ff3943",}}/>
                     <span className='card-span-btn'>停止同步</span>
                   </div>
-                  <div className='foot-funcs-sync'>
+                  <div className='foot-funcs-sync' onClick={() => handleShow('executeSync', 'restart')}>
                     <FontAwesomeIcon icon={faRotate} className='fa' style={{color: "#7ef447",}}/>
                     <span className='card-span-btn'>加载缓存</span>
                   </div>

@@ -6,6 +6,30 @@
     --headerML: 20px;
 }
 
+$primary-black: #161d2b;
+$primary-green: rgb(159, 239, 0, 1);
+$secondary-green: rgb(159, 239, 0, 0.9);
+$third-green: rgb(159, 239, 0, 0.5);
+$primary-bg-color:  #121927;
+$secondary-bg-color:  #1b2231;
+$primary-font-color: #a4b1cd;
+
+@mixin flex-center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-start-center {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@mixin primary-bottom-line {
+    border-bottom: 1px solid rgba(32,40,55,.5);
+}
+
 .modal-content {
     color: white!important;
     background-color: #1b2231!important;
@@ -25,15 +49,15 @@
     }
     .btn-primary {
         color: #141d2b;
-        background-color: rgb(159, 239, 0, 1);
+        background-color:$primary-green;
 
         &:hover {
-            background-color: rgb(159, 239, 0, 0.9);
+            background-color: $secondary-green;
             color: #141d2b;
         }
     }
     .btn-secondary {
-        color: #a4afc9;
+        color: #a4b1cd;
         background-color: #1b2231;
 
         &:hover {
@@ -43,9 +67,7 @@
     }
 
     .modal-body {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex-start-center;
         gap: 20px;
 
         .fa {
@@ -57,29 +79,26 @@
 }
 
 .app {
-    background-color: var(--primary);
     display: flex;
-    color: #a4b1cd;
+    color: $primary-font-color;
 
     .sidebar {
         min-height: 100vh;
         width: 240px;
         border-right: 1px solid rgba(32,40,55,.5);
-        background-color: var(--third);
+        background-color: $primary-bg-color;
         position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
 
         .header {
-            display: flex;
-            align-items: center;
+            @include flex-center-center();
+            @include primary-bottom-line();
             height: var(--headerHigh);
             gap: 10px;
             margin-left: var(--headerML);
-            border-bottom: 1px solid rgba(32,40,55,.5);
-
-
+            
             .header-image {
                 background-image: url(../../public/ds.png);
                 background-repeat: no-repeat;
@@ -99,20 +118,21 @@
 
             a {
                 text-decoration: none;
-                color: #a4b1cd;
+                color: $primary-font-color;
             }
+
             .list-group {
                 padding-left: 20px;
                 .list-group-item {
-                    background-color: var(--third);
-                    color: #a4b1cd;
+                    @include flex-start-center;
+                    background-color: $primary-bg-color;
+                    color: $primary-font-color;
                     font-size: 18px;
                     border: 0;
+                    border-radius: 5px;
                     margin-bottom: 20px;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
                     gap: 20px;
+                    width: 90%;
 
                     &:hover {
                         color: white;
@@ -121,7 +141,6 @@
 
                 .active {
                     background-color: #3e424b;
-                    border-radius: 5px;
                     width: 90%;
                 }
             }
@@ -135,21 +154,18 @@
         position: relative;
         margin-left: 240px;
         height: 100vh;
-        background-color: #151c2a;
+        background-color: $primary-bg-color;
 
         .content-top {
-            // padding-top: 40px;
+            @include flex-start-center();
+            @include primary-bottom-line();
             height: 80px;
             width: 100%;
             position: sticky;
             top: 0;
             z-index: 999;
-            background-color: var(--third);
+            background-color: $primary-bg-color;
 
-            border-bottom: 1px solid rgba(32,40,55,.5);
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
             gap: 20px;
             padding-left: var(--headerML);
 
@@ -167,13 +183,14 @@
             flex: 1;
 
             .content-commands {
+                @include primary-bottom-line();
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 0;
-    
+
                 .card {
                     background-color: var(--third);
-                    color: #a4b1cd;
+                    color: $primary-font-color;
                     border-radius: 0;
     
                     .card-header {
@@ -184,15 +201,11 @@
 
                     .card-body {
                         .card-title {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                            @include flex-center-center();
                             gap: 10px;
 
                             span {
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
+                                @include flex-center-center();
                                 gap: 10px;
                                 width: 100px;
                                 height: 30px;
@@ -237,10 +250,8 @@
                     }
     
                     .card-footer {
-                        display: flex;
+                        @include flex-center-center();
                         flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
                         border: 0;
 
                         .foot-date, .foot-date-sp, .foot-funcs {
@@ -250,9 +261,7 @@
                             width: 80%;
 
                             .foot-funcs-start, .foot-funcs-stop, .foot-funcs-sync {
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
+                                @include flex-center-center();
                                 gap: 15px;
                                 padding: 0 8px 0 8px;
                             }
@@ -298,7 +307,7 @@
                 align-items: center;
                 height: 65px;
                 padding: 0 40px;
-                background-color: var(--third);
+                background-color: $primary-bg-color;
 
                 .table-header-search {
                     display: flex;
@@ -313,7 +322,7 @@
 
                     .input-group {
                         input {
-                            background-color: var(--third);
+                            background-color: $primary-bg-color;
                             color: rgb(67, 155, 53);
                             border: 0;
 
@@ -321,8 +330,32 @@
                                 color: rgba(164, 177, 205, 0.4);
                             }
                         }
-
                     }
+
+                    .form-date {
+                        margin-left: 40px;
+
+                        appearance: none; /* 禁用默认外观 */
+                        // border: 1px solid #ccc;
+                        border: 0;
+                        padding: 8px 12px;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        width: 240px;
+                        background-color: $primary-bg-color;
+                        color: $primary-font-color;
+                    }
+
+                    .react-datepicker {
+                        background-color: #141d2b;
+                        border: thin solid rgb(17, 25, 39) ;
+
+                        .react-datepicker__header {
+                            background-color: #141d2b;
+                            border: 0;
+                        }
+                    }
+
 
                 }
 
@@ -347,17 +380,14 @@
                         }
 
                         &>.show:last-child {
+                            @include flex-center-center();
+                            flex-direction: column;
                             background-color: var(--secondary);
                             color: rgba(164, 177, 205, 0.4);
                             height: 150px;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
                             position: absolute;
                             inset: 10px -2px auto auto !important;
 
-                            
                             .form-check {
                                 height: 35px;
                                 width: 110px;
@@ -380,7 +410,6 @@
                             }
                         }
                     }
-
                 }
             }
 
@@ -389,7 +418,8 @@
                 table {
                     padding-left: 20px;
                     thead {
-                        border-bottom: 1px solid rgba(32,40,55,.5);
+                        @include primary-bottom-line();
+
                         th {
                             text-transform: uppercase;
                             color: #a4b1cd!important;

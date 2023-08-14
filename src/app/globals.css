@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --primary: #161d2b;
   --secondary: #1c2332;
@@ -32,7 +33,7 @@
   color: #141d2b;
 }
 .modal-content .btn-secondary {
-  color: #a4afc9;
+  color: #a4b1cd;
   background-color: #1b2231;
 }
 .modal-content .btn-secondary:hover {
@@ -51,7 +52,6 @@
 }
 
 .app {
-  background-color: var(--primary);
   display: flex;
   color: #a4b1cd;
 }
@@ -59,7 +59,7 @@
   min-height: 100vh;
   width: 240px;
   border-right: 1px solid rgba(32, 40, 55, 0.5);
-  background-color: var(--third);
+  background-color: #121927;
   position: fixed;
   top: 0;
   left: 0;
@@ -67,11 +67,12 @@
 }
 .app .sidebar .header {
   display: flex;
+  justify-content: center;
   align-items: center;
+  border-bottom: 1px solid rgba(32, 40, 55, 0.5);
   height: var(--headerHigh);
   gap: 10px;
   margin-left: var(--headerML);
-  border-bottom: 1px solid rgba(32, 40, 55, 0.5);
 }
 .app .sidebar .header .header-image {
   background-image: url(../../public/ds.png);
@@ -95,22 +96,23 @@
   padding-left: 20px;
 }
 .app .sidebar .menu .list-group .list-group-item {
-  background-color: var(--third);
-  color: #a4b1cd;
-  font-size: 18px;
-  border: 0;
-  margin-bottom: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  background-color: #121927;
+  color: #a4b1cd;
+  font-size: 18px;
+  border: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
   gap: 20px;
+  width: 90%;
 }
 .app .sidebar .menu .list-group .list-group-item:hover {
   color: white;
 }
 .app .sidebar .menu .list-group .active {
   background-color: #3e424b;
-  border-radius: 5px;
   width: 90%;
 }
 .app .content {
@@ -120,19 +122,19 @@
   position: relative;
   margin-left: 240px;
   height: 100vh;
-  background-color: #151c2a;
+  background-color: #121927;
 }
 .app .content .content-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid rgba(32, 40, 55, 0.5);
   height: 80px;
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 999;
-  background-color: var(--third);
-  border-bottom: 1px solid rgba(32, 40, 55, 0.5);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  background-color: #121927;
   gap: 20px;
   padding-left: var(--headerML);
 }
@@ -147,6 +149,7 @@
   flex: 1;
 }
 .app .content .content-center .content-commands {
+  border-bottom: 1px solid rgba(32, 40, 55, 0.5);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
@@ -209,9 +212,9 @@
 }
 .app .content .content-center .content-commands .card .card-footer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border: 0;
 }
 .app .content .content-center .content-commands .card .card-footer .foot-date, .app .content .content-center .content-commands .card .card-footer .foot-date-sp, .app .content .content-center .content-commands .card .card-footer .foot-funcs {
@@ -255,7 +258,7 @@
   align-items: center;
   height: 65px;
   padding: 0 40px;
-  background-color: var(--third);
+  background-color: #121927;
 }
 .app .content .content-center .table-header .table-header-search {
   display: flex;
@@ -268,7 +271,7 @@
   height: 20px;
 }
 .app .content .content-center .table-header .table-header-search .input-group input {
-  background-color: var(--third);
+  background-color: #121927;
   color: rgb(67, 155, 53);
   border: 0;
 }
@@ -277,6 +280,27 @@
 }
 .app .content .content-center .table-header .table-header-search .input-group input::placeholder {
   color: rgba(164, 177, 205, 0.4);
+}
+.app .content .content-center .table-header .table-header-search .form-date {
+  margin-left: 40px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; /* 禁用默认外观 */
+  border: 0;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  width: 240px;
+  background-color: #121927;
+  color: #a4b1cd;
+}
+.app .content .content-center .table-header .table-header-search .react-datepicker {
+  background-color: #141d2b;
+  border: thin solid rgb(17, 25, 39);
+}
+.app .content .content-center .table-header .table-header-search .react-datepicker .react-datepicker__header {
+  background-color: #141d2b;
+  border: 0;
 }
 .app .content .content-center .table-header .table-header-funcs {
   display: flex;
@@ -295,13 +319,13 @@
   background-color: var(--secondary);
 }
 .app .content .content-center .table-header .table-header-funcs .dropdown > .show:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: var(--secondary);
   color: rgba(164, 177, 205, 0.4);
   height: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   inset: 10px -2px auto auto !important;
 }

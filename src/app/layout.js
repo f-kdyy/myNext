@@ -1,6 +1,7 @@
 "use client"
 import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import Myheader from '@/_components/main/MyHeader'
 import Mymenu from '@/_components/main/MyMenu'
 import MyContentTopbar from '@/_components/zkop/MyContentTopbar';
