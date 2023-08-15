@@ -22,58 +22,61 @@ export default function MyContentTable() {
                         placeholder='Search'
                     />
                 </InputGroup>
-								<ReactDatePicker locale={zh} selected={startDate} onSelect={setStartDate} />
             </div>
 						
             <div className='table-header-funcs'>
-                <Dropdown>
-                    <Dropdown.Toggle>
-                        Status ∙ 
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Form key='todo-radio'>
-                            <Form.Check 
-                                type='radio'
-                                label='正常'
-                                name='todo-radio'
-                            />
-                            <Form.Check 
-                                type='radio'
-                                label='错误'
-                                name='todo-radio'
-                            />
-                            <Form.Check 
-                                type='radio'
-                                label='所有'
-                                name='todo-radio'
-                            />
-                        </Form>
-                    </Dropdown.Menu>
-                </Dropdown>
-                <Dropdown>
-                    <Dropdown.Toggle>
-                        Sort by 
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Form>
-                            <Form.Check 
-                                type='radio'
-                                label='正常'
-                                name='todo-radio1'
-                            />
-                            <Form.Check 
-                                type='radio'
-                                label='错误'
-                                name='todo-radio1'
-                            />
-                            <Form.Check 
-                                type='radio'
-                                label='所有'
-                                name='todo-radio1'
-                            />
-                        </Form>
-                    </Dropdown.Menu>
-                </Dropdown>
+							<div>
+								<ReactDatePicker locale={zh} selected={startDate} onSelect={setStartDate}/>
+							</div>
+							
+              <Dropdown>
+                  <Dropdown.Toggle>
+                      Status ∙ 
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                      <Form key='todo-radio'>
+                          <Form.Check 
+                              type='radio'
+                              label='正常'
+                              name='todo-radio'
+                          />
+                          <Form.Check 
+                              type='radio'
+                              label='错误'
+                              name='todo-radio'
+                          />
+                          <Form.Check 
+                              type='radio'
+                              label='所有'
+                              name='todo-radio'
+                          />
+                      </Form>
+                  </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown>
+                  <Dropdown.Toggle>
+                      Sort by 
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                      <Form>
+                          <Form.Check 
+                              type='radio'
+                              label='正常'
+                              name='todo-radio1'
+                          />
+                          <Form.Check 
+                              type='radio'
+                              label='错误'
+                              name='todo-radio1'
+                          />
+                          <Form.Check 
+                              type='radio'
+                              label='所有'
+                              name='todo-radio1'
+                          />
+                      </Form>
+                  </Dropdown.Menu>
+              </Dropdown>
             </div>
         </div>
         <div className='table-content'>

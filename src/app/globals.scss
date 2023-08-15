@@ -331,38 +331,84 @@ $primary-font-color: #a4b1cd;
                             }
                         }
                     }
-
-                    .form-date {
-                        margin-left: 40px;
-
-                        appearance: none; /* 禁用默认外观 */
-                        // border: 1px solid #ccc;
-                        border: 0;
-                        padding: 8px 12px;
-                        font-size: 14px;
-                        border-radius: 4px;
-                        width: 240px;
-                        background-color: $primary-bg-color;
-                        color: $primary-font-color;
-                    }
-
-                    .react-datepicker {
-                        background-color: #141d2b;
-                        border: thin solid rgb(17, 25, 39) ;
-
-                        .react-datepicker__header {
-                            background-color: #141d2b;
-                            border: 0;
-                        }
-                    }
-
-
                 }
 
                 .table-header-funcs {
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
-                    gap: 50px;
+                    width: 500px;
+
+                    .react-datepicker-wrapper {
+                        border: 0;
+
+                        .react-datepicker__input-container {
+                            input[type="text"] {
+                                color: $primary-font-color;
+                                text-align: center;
+                                width: 160px;
+                                height: 38px;
+                                border: 0;
+                                background-color: var(--primary);
+
+                                &:focus {
+                                    outline: thin solid rgb(17, 25, 39);
+                                }
+                            }
+                        }
+                    }
+
+                    .react-datepicker {
+                        background-color: $secondary-bg-color;
+                        border: thin solid rgb(17, 25, 39) ;
+                        border-radius: 3px;
+                        inset: 3px 80px auto auto !important;
+                        
+                        .react-datepicker__triangle {
+                            &::before {
+                                display: none;
+                            }
+                            &::after {
+                                display: none;
+                            }
+                        }
+
+                        .react-datepicker__header {
+                            background-color: $secondary-bg-color;
+                            border: 0;
+
+                            .react-datepicker__current-month, .react-datepicker__day-name, .react-datepicker__day--keyboard-selected {
+                                color: $primary-font-color;
+                            }
+                        }
+
+                        .react-datepicker__month-container {
+                            .react-datepicker__month {
+                                .react-datepicker__week {
+                                    .react-datepicker__day--keyboard-selected{
+                                        background-color: $primary-green;
+                                        color: $primary-bg-color;
+                                        font-weight: 600;
+                                    }
+                                }
+                            }
+                        }
+
+                        .react-datepicker__day {
+                            color: $primary-font-color;
+
+                            &:hover {
+                                background-color: $primary-green;
+                                color: $primary-bg-color;
+                                font-weight: 600;
+                            }
+                            &--selected {
+                                background-color: $primary-green;
+                                color: $primary-bg-color;
+                                font-weight: 600;
+                            }
+                        }
+                    }
 
                     .dropdown {
                         button {

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --primary: #161d2b;
   --secondary: #1c2332;
@@ -281,31 +280,62 @@
 .app .content .content-center .table-header .table-header-search .input-group input::placeholder {
   color: rgba(164, 177, 205, 0.4);
 }
-.app .content .content-center .table-header .table-header-search .form-date {
-  margin-left: 40px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none; /* 禁用默认外观 */
-  border: 0;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 4px;
-  width: 240px;
-  background-color: #121927;
-  color: #a4b1cd;
-}
-.app .content .content-center .table-header .table-header-search .react-datepicker {
-  background-color: #141d2b;
-  border: thin solid rgb(17, 25, 39);
-}
-.app .content .content-center .table-header .table-header-search .react-datepicker .react-datepicker__header {
-  background-color: #141d2b;
-  border: 0;
-}
 .app .content .content-center .table-header .table-header-funcs {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 50px;
+  width: 500px;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker-wrapper {
+  border: 0;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker-wrapper .react-datepicker__input-container input[type=text] {
+  color: #a4b1cd;
+  text-align: center;
+  width: 160px;
+  height: 38px;
+  border: 0;
+  background-color: var(--primary);
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker-wrapper .react-datepicker__input-container input[type=text]:focus {
+  outline: thin solid rgb(17, 25, 39);
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker {
+  background-color: #1b2231;
+  border: thin solid rgb(17, 25, 39);
+  border-radius: 3px;
+  inset: 3px 80px auto auto !important;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__triangle::before {
+  display: none;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__triangle::after {
+  display: none;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__header {
+  background-color: #1b2231;
+  border: 0;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__header .react-datepicker__current-month, .app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__header .react-datepicker__day-name, .app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__header .react-datepicker__day--keyboard-selected {
+  color: #a4b1cd;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__month-container .react-datepicker__month .react-datepicker__week .react-datepicker__day--keyboard-selected {
+  background-color: rgb(159, 239, 0);
+  color: #121927;
+  font-weight: 600;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__day {
+  color: #a4b1cd;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__day:hover {
+  background-color: rgb(159, 239, 0);
+  color: #121927;
+  font-weight: 600;
+}
+.app .content .content-center .table-header .table-header-funcs .react-datepicker .react-datepicker__day--selected {
+  background-color: rgb(159, 239, 0);
+  color: #121927;
+  font-weight: 600;
 }
 .app .content .content-center .table-header .table-header-funcs .dropdown button {
   width: 100px;
