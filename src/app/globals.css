@@ -4,6 +4,7 @@
   --third: #121927;
   --headerHigh: 80px;
   --headerML: 20px;
+  --toastify-color-light: $primary-bg-color;
 }
 
 .modal-content {
@@ -284,7 +285,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 500px;
+  width: 600px;
 }
 .app .content .content-center .table-header .table-header-funcs .react-datepicker-wrapper {
   border: 0;
@@ -343,7 +344,7 @@
   border-radius: 3px;
   background-color: var(--primary);
   border: thin solid rgb(17, 25, 39);
-  color: rgba(164, 177, 205, 0.4);
+  color: rgb(164, 177, 205);
 }
 .app .content .content-center .table-header .table-header-funcs .dropdown button:hover {
   background-color: var(--secondary);
@@ -354,25 +355,47 @@
   align-items: center;
   flex-direction: column;
   background-color: var(--secondary);
-  color: rgba(164, 177, 205, 0.4);
-  height: 150px;
+  color: rgb(164, 177, 205);
   position: absolute;
   inset: 10px -2px auto auto !important;
 }
 .app .content .content-center .table-header .table-header-funcs .dropdown > .show:last-child .form-check {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   height: 35px;
-  width: 110px;
+  width: 100%;
+  margin-left: 10px;
 }
-.app .content .content-center .table-header .table-header-funcs .dropdown > .show:last-child .form-check input[type=radio] {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+.app .content .content-center .table-header .table-header-funcs .dropdown > .show:last-child .form-check input {
+  width: 25px;
+  height: 25px;
   background-color: var(--primary);
   border: 2px solid var(--primary);
   outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.app .content .content-center .table-header .table-header-funcs .dropdown > .show:last-child .form-check input[type=radio] {
+  border-radius: 100%;
 }
 .app .content .content-center .table-header .table-header-funcs .dropdown > .show:last-child .form-check label {
   margin-left: 20px;
+  width: 100%;
+}
+.app .content .content-center .table-header .table-header-funcs .form-switch {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.app .content .content-center .table-header .table-header-funcs .form-switch label {
+  overflow: hidden;
+}
+.app .content .content-center .table-header .table-header-funcs .form-switch .form-check-input {
+  border: 1px solid rgb(159, 239, 0);
+  background-color: #1b2231;
 }
 .app .content .content-center .table-content {
   background-color: #151c2a;
@@ -387,7 +410,7 @@
   text-transform: uppercase;
   color: #a4b1cd !important;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   padding-left: 40px;
   padding-top: 20px;
   padding-bottom: 30px;
