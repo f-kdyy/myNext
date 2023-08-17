@@ -5,12 +5,14 @@ import { Form, InputGroup, Dropdown, Offcanvas } from 'react-bootstrap'
 import ReactDatePicker from 'react-datepicker'
 import zh from 'date-fns/locale/zh-CN'
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 
 export default function MyContentTable() {
   const [searchText, setSearchText] = useState('');
 	const [show, setShow] = useState(false);
   const [isChecked, setChecked] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(['0', '1', '2']);
+  // const [dataLoaded, setDataLoaded] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -56,10 +58,10 @@ export default function MyContentTable() {
             throw new Error(error.message);
           });
         }
-    }).then( data => {
-      if (data.status === '200') {
-        const ret = JSON.parse(data.message);
-        const logs = ret.logs
+    }).then( ret => {
+      if (ret.status === '200') {
+        const message = JSON.parse(ret.message);
+        const logs = message.logs
         if (logs.length === 0) {
           setData([{
             log_seq: 0,
@@ -81,16 +83,15 @@ export default function MyContentTable() {
   };
 
   useEffect(() => {
-    fetchData(startDate);
-    applyFilters();
+    fetchData(startDate)
     return () => {
       stopTimer();
     }
   }, []);
 
   useEffect(() => {
-    applyFilters(searchText, selectedStatus);
-  }, [searchText, selectedStatus]);
+    applyFilters();
+  }, [searchText, selectedStatus, data]);
 
   const handleFetchData = (dataDate) => {
     setStartDate(dataDate);
@@ -110,12 +111,11 @@ export default function MyContentTable() {
     }
   };
 
-  const applyFilters = (searchValue, statusFilters) => {
-    console.log(statusFilters)
-    const searchRegex = new RegExp(searchValue, 'i');
+  const applyFilters = () => {
+    const searchRegex = new RegExp(searchText, 'i');
     const filteredResults = data.filter((item) =>
       searchRegex.test(item.log_text) &&
-      (statusFilters.includes(item.log_sts) || (item.log_sts === '2' && statusFilters.includes('2')))
+      (selectedStatus.includes(item.log_sts) || (item.log_sts === '2' && selectedStatus.includes('2')))
     );
     setFilteredData(filteredResults);
   };
@@ -123,17 +123,21 @@ export default function MyContentTable() {
   const handleSearchChange = (e) => {
     const searchValue = e.target.value;
     setSearchText(searchValue);
-
     // 在搜索文字变化时应用过滤逻辑
-    applyFilters(searchValue, selectedStatus);
+    applyFilters();
   }
 
   const handleStatusChange = (event) => {
     const selectedValue = event.target.value;
-
+    
     let updatedStatus;
+    let displayText = 'Status ∙ ';
     if (selectedValue === '所有') {
-      updatedStatus = ['0', '1', '2'];
+      if (selectedStatus.includes('0') && selectedStatus.includes('1') && selectedStatus.includes('2')) {
+        updatedStatus = [];
+      } else {
+        updatedStatus = ['0', '1', '2'];
+      }
     } else {
       updatedStatus = selectedStatus.includes(selectedValue)
         ? selectedStatus.filter(status => status !== selectedValue)
@@ -141,9 +145,8 @@ export default function MyContentTable() {
     }
 
     setSelectedStatus(updatedStatus);
-
     // 在状态选择变化时应用过滤逻辑
-    applyFilters(searchText, updatedStatus);
+    applyFilters();
   };
 
   // const displayData = searchText ? filteredData : data;
@@ -168,62 +171,72 @@ export default function MyContentTable() {
 					
           <Dropdown>
             <Dropdown.Toggle>
-                Status ∙ 
+              状态过滤
             </Dropdown.Toggle>
             <Dropdown.Menu>
-            <Form key='todo-checkbox'>
-              <Form.Check 
-                type='checkbox'
-                label='正常'
-                name='todo-checkbox'
-                value='1'
-                checked={selectedStatus.includes('1')}
-                onChange={handleStatusChange}
-              />
-              <Form.Check 
-                type='checkbox'
-                label='错误'
-                name='todo-checkbox'
-                value='2'
-                checked={selectedStatus.includes('2')}
-                onChange={handleStatusChange}
-              />
-              <Form.Check 
-                type='checkbox'
-                label='所有'
-                name='todo-checkbox'
-                value='所有'
-                checked={selectedStatus.includes('0') && selectedStatus.includes('1') && selectedStatus.includes('2')}
-                onChange={handleStatusChange}
-              />
-            </Form>
+              <Form key='todo-checkbox'>
+                <Form.Check 
+                  type='checkbox'
+                  label='正常'
+                  name='todo-checkbox'
+                  value='1'
+                  checked={selectedStatus.includes('1')}
+                  onChange={handleStatusChange}
+                />
+                <Form.Check 
+                  type='checkbox'
+                  label='错误'
+                  name='todo-checkbox'
+                  value='2'
+                  checked={selectedStatus.includes('2')}
+                  onChange={handleStatusChange}
+                />
+                <Form.Check 
+                  type='checkbox'
+                  label='所有'
+                  name='todo-checkbox'
+                  value='所有'
+                  checked={selectedStatus.includes('0') && selectedStatus.includes('1') && selectedStatus.includes('2')}
+                  onChange={handleStatusChange}
+                />
+              </Form>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
             <Dropdown.Toggle>
-              Sort by 
+              模块过滤
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Form>
                 <Form.Check 
-                  type='radio'
-                  label='LOG TIME'
-                  name='todo-radio1'
+                  type='checkbox'
+                  label='PUBLIC_INFO'
+                  name='todo-checkbox1'
                 />
                 <Form.Check 
-                  type='radio'
-                  label='LOG DATE'
-                  name='todo-radio1'
+                  type='checkbox'
+                  label='PERSON_ACCOUNT'
+                  name='todo-checkbox1'
                 />
                 <Form.Check 
-                  type='radio'
-                  label='UNIT NAME'
-                  name='todo-radio1'
+                  type='checkbox'
+                  label='NOTICES'
+                  name='todo-checkbox1'
                 />
 								<Form.Check 
-                  type='radio'
-                  label='MODULE NAME'
-                  name='todo-radio1'
+                  type='checkbox'
+                  label='TRADE'
+                  name='todo-checkbox1'
+                />
+                	<Form.Check 
+                  type='checkbox'
+                  label='FUND'
+                  name='todo-checkbox1'
+                />
+                	<Form.Check 
+                  type='checkbox'
+                  label='PERF'
+                  name='todo-checkbox1'
                 />
               </Form>
             </Dropdown.Menu>
@@ -253,19 +266,39 @@ export default function MyContentTable() {
             </tr>
           </thead>
           <tbody>
-						{
-							filteredData.map( item => {
-								return (
-									<tr key={item.log_seq}>
-										<td>{item.unit_name}</td>
-										<td>{item.module_name}</td>
-										<td>{item.log_dt}</td>
-										<td>{item.log_time}</td>
-										<td>{item.log_text}</td>
-									</tr>
-								)
-							})
-						}
+            {/* {dataLoaded ?
+            	<tr>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              </tr>
+              : (
+                filteredData.map( item => {
+                  return (
+                    <tr key={item.log_seq}>
+                      <td>{item.unit_name}</td>
+                      <td>{item.module_name}</td>
+                      <td>{item.log_dt}</td>
+                      <td>{item.log_time}</td>
+                      <td>{item.log_text}</td>
+                    </tr>
+                  )
+                })
+              ) */
+              filteredData.map( item => {
+                return (
+                  <tr key={item.log_seq}>
+                    <td>{item.unit_name}</td>
+                    <td>{item.module_name}</td>
+                    <td>{item.log_dt}</td>
+                    <td>{item.log_time}</td>
+                    <td>{item.log_text}</td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </table>
       </div>
